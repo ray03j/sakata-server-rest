@@ -1,12 +1,12 @@
 # Docker Compose configuration file
 
 services:
-  server:
+  server-rest:
     build:
       context: .
       target: final
     ports:
-      - 8080:8085
+      - 8085:8085
     networks:
       - app-network
     depends_on:

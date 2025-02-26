@@ -21,3 +21,11 @@ func InitializeUserHandler() *handler.UserHandler {
 	userHandler := handler.NewUserHandler(userService)
 	return userHandler
 }
+
+// InitializeThemeHandler は DI で ThemeHandler を生成
+func InitializeThemeHandler() *handler.ThemeHandler {
+	themeRepository := repository.NewThemeRepository()
+	themeService := service.NewThemeService(themeRepository)
+	themeHandler := handler.NewThemeHandler(themeService)
+	return themeHandler
+}
