@@ -13,7 +13,7 @@ func main() {
     // CORS 設定
     r.Use(cors.New(cors.Config{
         AllowOrigins:     []string{"http://localhost:5173"}, // フロントエンドのURL
-        AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+        AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"},
         AllowHeaders:     []string{"Content-Type", "Authorization"},
         AllowCredentials: true,
         MaxAge:           12 * time.Hour,
