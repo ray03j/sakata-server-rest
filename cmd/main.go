@@ -22,6 +22,7 @@ func main() {
     // 依存関係の初期化
     userHandler := di.InitializeUserHandler()
     themeHandler := di.InitializeThemeHandler()
+    gameHandler := di.InitializeGameHandler()
 
     // ユーザー関連のルーティング
     r.GET("/user/:id", userHandler.GetUser)
@@ -29,6 +30,11 @@ func main() {
     // テーマ関連のルーティング
     r.POST("/theme", themeHandler.CreateTheme)
     r.GET("/theme/:id", themeHandler.GetTheme)
+
+    // ゲーム関連のルーティング
+    r.POST("/game", gameHandler.SaveGame)
+    r.GET("/game/:id", gameHandler.GetGame)
+		r.PATCH("/game/:id", gameHandler.UpdateGame)
 
     r.Run(":8085") // サーバー起動
 }

@@ -12,18 +12,29 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - DB_SSLMODE=${DB_SSLMODE}
+      - DB_TIMEZONE=${DB_TIMEZONE}
+    env_file:
+      - .env # 環境変数を .env から取得
 
   db:
     image: postgres
     restart: always
-    user: postgres
+    user: ${DB_USER}
     secrets:
       - db-password
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=example
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_NAME=${DB_NAME}
     expose:
       - 5432
     healthcheck:

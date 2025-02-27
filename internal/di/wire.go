@@ -28,3 +28,13 @@ func InitializeThemeHandler() *handler.ThemeHandler {
 	)
 	return &handler.ThemeHandler{}
 }
+
+func InitializeGameHandler() *handler.GameHandler {
+	wire.Build(
+		repository.NewDB,
+		repository.NewGameRepository,
+		service.NewGameService,
+		handler.NewGameHandler,
+	)
+	return nil
+}

@@ -29,3 +29,11 @@ func InitializeThemeHandler() *handler.ThemeHandler {
 	themeHandler := handler.NewThemeHandler(themeService)
 	return themeHandler
 }
+
+func InitializeGameHandler() *handler.GameHandler {
+	db := repository.NewDB()
+	gameRepository := repository.NewGameRepository(db)
+	gameService := service.NewGameService(gameRepository)
+	gameHandler := handler.NewGameHandler(gameService)
+	return gameHandler
+}
